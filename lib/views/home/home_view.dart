@@ -10,32 +10,35 @@ class HomView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // leadingWidth: ,
-        backgroundColor: Theme.of(context).primaryColor,
-        leading: IconButton(
-          onPressed: () {
-            Provider.of<ColorProvider>(context, listen: false)
-                .toggleColorPelete();
-          },
-          icon: const Icon(
-            Icons.palette_rounded,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Scaffold(
+        appBar: AppBar(
+          // leadingWidth: ,
+          backgroundColor: Theme.of(context).primaryColor,
+          leading: IconButton(
+            onPressed: () {
+              Provider.of<ColorProvider>(context, listen: false)
+                  .toggleColorPelete();
+            },
+            icon: const Icon(
+              Icons.palette_rounded,
+            ),
           ),
         ),
-      ),
-      body: HomeViewBody(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
-      floatingActionButton: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () async {
-            Provider.of<SebhaProvider>(context, listen: false).reset();
-          },
-          child: Icon(
-            Icons.refresh_rounded,
-            color: Colors.white,
+        body: HomeViewBody(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButton: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () async {
+              Provider.of<SebhaProvider>(context, listen: false).reset();
+            },
+            child: Icon(
+              Icons.refresh_rounded,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
