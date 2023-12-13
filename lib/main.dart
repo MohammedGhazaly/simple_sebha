@@ -13,6 +13,11 @@ void main() async {
   await Prefs.init();
   int selectedColor =
       Prefs.getInt(AppSharedPrefKeys.colorKey) ?? AppColors.colorIntValues[0];
+  int goal = Prefs.getInt(AppSharedPrefKeys.goal) ?? 33;
+  int total = Prefs.getInt(AppSharedPrefKeys.total) ?? 0;
+  int roundTasbeh = Prefs.getInt(AppSharedPrefKeys.roundTasbeh) ?? 0;
+  int timeRepeat = Prefs.getInt(AppSharedPrefKeys.timeRepeat) ?? 0;
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ColorProvider>(
@@ -22,7 +27,11 @@ void main() async {
       ),
       ChangeNotifierProvider<SebhaProvider>(
         create: (context) {
-          return SebhaProvider();
+          return SebhaProvider(
+              goal: goal,
+              roundTasbeh: roundTasbeh,
+              timeRepeat: timeRepeat,
+              total: total);
         },
       ),
     ],

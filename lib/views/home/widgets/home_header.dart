@@ -46,7 +46,9 @@ class HomeHeader extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                sebhaProvider.decrementGoal();
+                if (sebhaProvider.goal != sebhaProvider.roundTasbeh) {
+                  sebhaProvider.decrementGoal();
+                }
               },
               icon: const Icon(
                 Icons.remove_circle,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_sebha/core/colors.dart';
 import 'package:simple_sebha/providers/color_provider.dart';
+import 'package:simple_sebha/providers/sebha_provider.dart';
 import 'package:simple_sebha/views/home/widgets/home_view_body.dart';
 
 class HomView extends StatelessWidget {
@@ -29,7 +30,9 @@ class HomView extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         child: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor,
-          onPressed: () {},
+          onPressed: () async {
+            Provider.of<SebhaProvider>(context, listen: false).reset();
+          },
           child: Icon(
             Icons.refresh_rounded,
             color: Colors.white,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_sebha/core/colors.dart';
 import 'package:simple_sebha/core/shared_pref.dart';
 import 'package:simple_sebha/core/shared_pref_keys.dart';
 
