@@ -33,6 +33,10 @@ class SebhaProvider extends ChangeNotifier {
 
   void chooseFromSpecefiedGoals(int choosenGoal) async {
     goal = choosenGoal;
+    if (roundTasbeh > 33) {
+      roundTasbeh = 0;
+      await Prefs.setInt(AppSharedPrefKeys.roundTasbeh, roundTasbeh);
+    }
     await Prefs.setInt(AppSharedPrefKeys.goal, goal);
 
     notifyListeners();
