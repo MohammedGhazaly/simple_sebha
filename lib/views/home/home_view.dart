@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_sebha/views/home/widgets/home_view_body.dart';
 
 class HomView extends StatelessWidget {
   const HomView({super.key});
@@ -10,11 +11,12 @@ class HomView extends StatelessWidget {
         // leadingWidth: ,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(
+          icon: const Icon(
             Icons.palette_rounded,
           ),
         ),
       ),
+      body: HomeViewBody(),
     );
   }
 }
