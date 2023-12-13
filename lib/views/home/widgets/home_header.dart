@@ -59,7 +59,6 @@ class HomeHeader extends StatelessWidget {
                 SebhaCountContainer(count: 1000),
                 SebhaCountContainer(count: 100),
                 SebhaCountContainer(count: 33),
-                SebhaCountContainer(count: 0),
               ],
             ),
           ),
