@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:simple_sebha/core/colors.dart';
+import 'package:simple_sebha/views/home/widgets/color_radios.dart';
 
 class HomeBottom extends StatelessWidget {
   const HomeBottom({
@@ -16,7 +17,7 @@ class HomeBottom extends StatelessWidget {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppColors.blackColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Text(
@@ -24,6 +25,7 @@ class HomeBottom extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         SizedBox(
@@ -32,8 +34,8 @@ class HomeBottom extends StatelessWidget {
         CircularPercentIndicator(
           animationDuration: 300,
           percent: 17 / 100,
-          progressColor: AppColors.purpleColor,
-          backgroundColor: AppColors.purpleColor.withOpacity(0.2),
+          progressColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
           animation: true,
           lineWidth: 5,
           radius: 90,
@@ -54,7 +56,7 @@ class HomeBottom extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: AppColors.blackColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Text(
@@ -62,31 +64,11 @@ class HomeBottom extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: AppColors.blackColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Spacer(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Radio(
-              visualDensity: VisualDensity.compact,
-              value: 0,
-              groupValue: 0,
-              onChanged: (value) {},
-            ),
-            Radio(
-              value: 1,
-              groupValue: 0,
-              onChanged: (value) {},
-            ),
-            Radio(
-              value: 2,
-              groupValue: 0,
-              onChanged: (value) {},
-            ),
-          ],
-        ),
+        ColorRadios(),
       ],
     );
   }

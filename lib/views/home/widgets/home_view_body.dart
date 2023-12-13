@@ -15,7 +15,7 @@ class HomeViewBody extends StatelessWidget {
           height: MediaQuery.sizeOf(context).height * 0.25,
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.blackColor,
+              color: Theme.of(context).primaryColor,
             ),
             child: HomeHeader(),
           ),

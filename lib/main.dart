@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_sebha/core/colors.dart';
+import 'package:simple_sebha/providers/color_provider.dart';
 import 'package:simple_sebha/views/home/home_view.dart';
 
 void main() {
-  runApp(const Sebha());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<ColorProvider>(
+        create: (context) {
+          return ColorProvider();
+        },
+      ),
+    ],
+    child: const Sebha(),
+  ));
 }
 
 class Sebha extends StatelessWidget {
@@ -12,15 +23,16 @@ class Sebha extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ColorProvider colorProvider = Provider.of<ColorProvider>(context);
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-              backgroundColor: AppColors.blackColor,
-              foregroundColor: Colors.white),
-          useMaterial3: true,
-        ),
-        home: const HomView());
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: Color(colorProvider.selectedColor),
+        appBarTheme: const AppBarTheme(foregroundColor: Colors.white),
+        useMaterial3: true,
+      ),
+      home: const HomView(),
+    );
   }
 }
