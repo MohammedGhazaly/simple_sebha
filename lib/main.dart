@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_sebha/core/colors.dart';
+import 'package:simple_sebha/core/shared_pref.dart';
+import 'package:simple_sebha/core/shared_pref_keys.dart';
 import 'package:simple_sebha/providers/color_provider.dart';
 import 'package:simple_sebha/views/home/home_view.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Prefs.init();
+  int selectedColor =
+      Prefs.getInt(AppSharedPrefKeys.colorKey) ?? AppColors.colorIntValues[0];
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ColorProvider>(
         create: (context) {
-          return ColorProvider();
+          return ColorProvider(selectedColor: selectedColor);
         },
       ),
     ],

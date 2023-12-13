@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:simple_sebha/core/colors.dart';
+import 'package:simple_sebha/core/shared_pref.dart';
+import 'package:simple_sebha/core/shared_pref_keys.dart';
 
 class ColorProvider extends ChangeNotifier {
   double colorRadiosOpacity = 0;
-  int selectedColor = AppColors.colorIntValues[0];
+  late int selectedColor;
+  ColorProvider({required this.selectedColor});
 
   void toggleColorPelete() {
     if (colorRadiosOpacity == 0) {
@@ -14,8 +17,9 @@ class ColorProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void changeColor(int? colorValue) {
+  void changeColor(int? colorValue) async {
     selectedColor = colorValue ?? selectedColor;
+    await Prefs.setInt(AppSharedPrefKeys.colorKey, selectedColor);
     notifyListeners();
   }
 }
