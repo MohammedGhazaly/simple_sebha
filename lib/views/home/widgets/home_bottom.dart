@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_sebha/core/colors.dart';
+import 'package:simple_sebha/providers/sebha_provider.dart';
 import 'package:simple_sebha/views/home/widgets/color_radios.dart';
 
 class HomeBottom extends StatelessWidget {
@@ -10,6 +12,7 @@ class HomeBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SebhaProvider sebhaProvider = Provider.of<SebhaProvider>(context);
     return Column(
       children: [
         Text(
@@ -21,7 +24,7 @@ class HomeBottom extends StatelessWidget {
           ),
         ),
         Text(
-          "17",
+          sebhaProvider.roundTasbeh.toString(),
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -33,18 +36,22 @@ class HomeBottom extends StatelessWidget {
         ),
         CircularPercentIndicator(
           animationDuration: 300,
-          percent: 17 / 100,
+          percent: (sebhaProvider.roundTasbeh / sebhaProvider.goal),
           progressColor: Theme.of(context).primaryColor,
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
           animation: true,
+          addAutomaticKeepAlive: true,
+          animateFromLastPercent: true,
           lineWidth: 5,
           radius: 90,
           center: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              sebhaProvider.incrementTasbeeh();
+            },
             icon: Icon(
               Icons.touch_app,
               size: 56,
-              color: AppColors.blackColor,
+              color: Theme.of(context).primaryColor,
             ),
           ),
         ),
@@ -52,7 +59,7 @@ class HomeBottom extends StatelessWidget {
           height: 5,
         ),
         Text(
-          "مرات التكرار: 0",
+          "مرات التكرار: ${sebhaProvider.timeRepeat}",
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -60,7 +67,7 @@ class HomeBottom extends StatelessWidget {
           ),
         ),
         Text(
-          "المجموع: 90",
+          "المجموع: ${sebhaProvider.total}",
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,

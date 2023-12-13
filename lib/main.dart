@@ -4,6 +4,7 @@ import 'package:simple_sebha/core/colors.dart';
 import 'package:simple_sebha/core/shared_pref.dart';
 import 'package:simple_sebha/core/shared_pref_keys.dart';
 import 'package:simple_sebha/providers/color_provider.dart';
+import 'package:simple_sebha/providers/sebha_provider.dart';
 import 'package:simple_sebha/views/home/home_view.dart';
 
 void main() async {
@@ -17,6 +18,11 @@ void main() async {
       ChangeNotifierProvider<ColorProvider>(
         create: (context) {
           return ColorProvider(selectedColor: selectedColor);
+        },
+      ),
+      ChangeNotifierProvider<SebhaProvider>(
+        create: (context) {
+          return SebhaProvider();
         },
       ),
     ],

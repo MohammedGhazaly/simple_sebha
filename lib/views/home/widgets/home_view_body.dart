@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:simple_sebha/core/colors.dart';
 import 'package:simple_sebha/views/home/widgets/home_bottom.dart';
 import 'package:simple_sebha/views/home/widgets/home_header.dart';
 

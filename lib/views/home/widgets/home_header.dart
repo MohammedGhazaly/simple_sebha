@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_sebha/providers/sebha_provider.dart';
 import 'package:simple_sebha/views/home/widgets/sebha_count_container.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -8,6 +10,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SebhaProvider sebhaProvider = Provider.of<SebhaProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -25,7 +28,9 @@ class HomeHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                sebhaProvider.incrementGoal();
+              },
               icon: const Icon(
                 Icons.add_circle,
                 color: Colors.white,
@@ -33,14 +38,16 @@ class HomeHeader extends StatelessWidget {
               ),
             ),
             Text(
-              "33",
+              sebhaProvider.goal.toString(),
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                sebhaProvider.decrementGoal();
+              },
               icon: const Icon(
                 Icons.remove_circle,
                 color: Colors.white,
@@ -49,18 +56,21 @@ class HomeHeader extends StatelessWidget {
             ),
           ],
         ),
-        const Align(
+        Align(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SebhaCountContainer(count: 10000),
-                SebhaCountContainer(count: 1000),
-                SebhaCountContainer(count: 100),
-                SebhaCountContainer(count: 33),
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: sebhaProvider.golas.map((goal) {
+                  return InkWell(
+                    onTap: () {
+                      sebhaProvider.chooseFromSpecefiedGoals(goal);
+                    },
+                    child: SebhaCountContainer(
+                      count: goal,
+                    ),
+                  );
+                }).toList()),
           ),
         )
       ],
