@@ -17,8 +17,10 @@ class ColorProvider extends ChangeNotifier {
   }
 
   void changeColor(int? colorValue) async {
-    selectedColor = colorValue ?? selectedColor;
-    await Prefs.setInt(AppSharedPrefKeys.colorKey, selectedColor);
-    notifyListeners();
+    if (colorRadiosOpacity == 1) {
+      selectedColor = colorValue ?? selectedColor;
+      await Prefs.setInt(AppSharedPrefKeys.colorKey, selectedColor);
+      notifyListeners();
+    }
   }
 }
